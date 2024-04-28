@@ -17,3 +17,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#navbar {
+    position : fixed;
+    z-index: 999;
+    top: 0;
+    box-shadow: insert 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+}
