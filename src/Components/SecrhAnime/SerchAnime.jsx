@@ -1,29 +1,41 @@
-import { IoCloseOutline } from "react-icons/io5";
+import { IoCloseOutline, IoEyeSharp } from "react-icons/io5";
 import axios from 'axios';
-import React, { useEffect, useState} from 'react';
+import React, { useRef, useState, useTransition} from 'react';
+import { MdStarHalf } from "react-icons/md";
+import { PiFilmSlateBold } from "react-icons/pi";
+
 
 
 
 const SerchAnime = () => {
     const [getInput, setgetInput] = useState();
     const [Filter, setFilter] = useState([]);
+    const [click, setclick] = useState();
+    const component = useRef();
     const Handlechange = (e) => {
            setgetInput(e.target.value)
     }
 
     const Fecthapi = async () => {
         try {
-                const Url = `https://api.jikan.moe/v4/anime?q=${getInput}`;
-                const response = await axios.get(Url);
-                setFilter(response.data.data)
+            const Url = `https://api.jikan.moe/v4/anime?q=${getInput}`;
+            const response = await axios.get(Url);
+            setFilter(response.data.data)
+
             } catch (error) {
                console.log(error)
             }
+            
         }
-        useEffect(() => {
-            Fecthapi() 
-        }, [])
-        console.log(Filter)
+
+    const handleclick = () => {
+        setclick(true)
+        Fecthapi()
+        
+    }
+     const handleclose = () => {
+         setclick(false)
+    }
 
     return (
         <>
@@ -36,27 +48,37 @@ const SerchAnime = () => {
                     </svg>
                 </div>
                 <input type="text"  onChange={Handlechange} name='serch' className="block w-full px-48  p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Animee...." required /> 
-                 <button  onClick={Fecthapi} className="text-white absolute end-2.5 bottom-2.5 bg-indigo-500 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> 
+                 <button  onClick={handleclick} className="text-white absolute end-2.5 bottom-2.5 bg-indigo-500 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> 
             </div>
         </div>
-          <div id='serch' className='h-[45vh] w-[400px] bg-gray-800 mt-5 rounded-lg overflow-y-auto overflow-auto scrollbar scrollbar-thumb-blue-500'>
-              <div className='ml-4 pt-4'>
-                  <div className='flex justify-between items-center'>
-                  <span>Hasil pencaharian {getInput}</span>
-                  <IoCloseOutline className="text-2xl mr-2"/>
+          
+              <div id='serch' ref={component} className={` ${click ?  'active' : 'hidden' } h-[45vh] w-[400px] bg-gray-800 mt-5 rounded-lg overflow-y-auto overflow-auto scrollbar scrollbar-thumb-blue-500`}>
+                  <div className='ml-4 pt-4'>
+                      <div className='flex justify-between items-center'>
+                      <span>Hasil pencaharian {getInput}</span>
+                      <IoCloseOutline className="text-2xl mr-2 cursor-pointer" onClick={handleclose}/>
+                      </div>
+                       {Filter.map((ress) => (
+                          <>
+                          <div className='flex pt-4 pb-4'>
+                          <img src={ress.images.jpg.image_url} alt="" className='w-14 rounded-sm' />
+                          <div className="pl-2 pt-2">
+                           <p className='text-xs text-left mr-2 cursor-pointer'>{ress.title}</p>
+                           <div className="pt-2 flex">
+                           <MdStarHalf />
+                             <p className='text-xs pl-1 pr-2'>{ress.score}</p>
+                           <PiFilmSlateBold />
+                              <p className='text-xs pl-1 pr-2'>{ress.episodes}</p>
+                            <IoEyeSharp />
+                                <p className='text-xs '>{ress.members}</p>
+                          </div>
+                           </div>
+                          </div>
+                          </>
+                       ))}
                   </div>
-                   {Filter.map((ress) => (
-                      <>
-                      <div className='flex pt-4'>
-                      <img src={ress.images.jpg.image_url} alt="" className='w-14 rounded-sm' />
-                      <div>
-                       <p className='text-xs text-left mr-2'>{ress.title}</p>
-                      </div>
-                      </div>
-                      </>
-                   ))}
               </div>
-          </div>
+       
        </div> 
             
         </>

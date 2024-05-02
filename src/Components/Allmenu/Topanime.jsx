@@ -37,6 +37,7 @@ const Topanime = () => {
                                                 <div className='ml-6 pt-2'>
                                                   <div className='flex'>
                                                      <p className=' text-xs mr-4'>{all.title}</p>
+                                                     <p className=' text-xs mr-4'>{all.title_synonyms}</p>
                                                   </div> 
                                                      <div className='flex gap-x-2 pt-1'>
                                                        <MdStarHalf />

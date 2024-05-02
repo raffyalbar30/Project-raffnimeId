@@ -9,7 +9,6 @@ const Recomend = () => {
              const data = await axios.get(`https://api.jikan.moe/v4/top/anime?limit=5`)
                setrecomnd(data.data.data);
           } catch (error) {
-             console.log(error)
           }
  
       }
