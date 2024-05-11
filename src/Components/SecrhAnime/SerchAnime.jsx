@@ -44,9 +44,12 @@ const SerchAnime = () => {
             }
         }
 
-    const handleclick = () => {
-        setclick(true);
-        Fecthapi();  
+    const handleclick = (event) => {
+        const valideteinput = getInput.trim();
+        if (valideteinput == 0 ) return
+            event.preventDefault() 
+            setclick(true);
+            Fecthapi();
     }
      const handleclose = () => {
          setclick(false);
@@ -55,7 +58,7 @@ const SerchAnime = () => {
 
     return (
         <>
-        <div className='md:mr-4 mr-2 pt-2'>
+        <div className='md:mr-4 mr-2 pt-2 '>
          <div className="max-w-md mx-auto">   
             <label  className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div className="relative">
@@ -64,10 +67,11 @@ const SerchAnime = () => {
                     </svg>
                 </div>
                 <input type="text"  onChange={Handlechange} name='serch' className="block w-full px-48  p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Animee...." required /> 
-                 <button  onClick={handleclick} disabled={isLoading} className="text-white absolute end-2.5 bottom-2.5 bg-indigo-500 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50">Search</button> 
+                 <button  onClick={handleclick} disabled={isLoading} className=" text-white absolute end-2.5 bottom-2.5 bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-4 py-2  disabled:opacity-50">Search</button> 
             </div>
         </div>
-              <div id='serch' ref={component} className={` ${click ?  'active' : 'hidden' } rounded-lg h-[45vh] w-[400px] bg-gray-800 mt-5 overflow-y-auto overflow-auto scrollbar scrollbar-thumb-blue-500`}>
+
+              <div id='serch' ref={component} className={`${click ?  'active' : 'hidden' } rounded-lg h-[45vh] w-[400px] bg-gray-800 mt-5 overflow-y-auto overflow-auto scrollbar scrollbar-thumb-blue-500 transition-opacity-30 inset-0  transition-all duration-200 ease-in-out `}>
                   <div className='ml-4 pt-4'>
                       <div className='flex justify-between items-center'>
                       <span>Hasil pencaharian {getInput}</span>
@@ -81,7 +85,7 @@ const SerchAnime = () => {
                              <span class="sr-only">Loading...</span>
                               </div>
                         }
-                       { !isLoading && Filter.map((ress) => (
+                       {!isLoading && Filter.map((ress) => (
                           <>
                           <div className='flex pt-4 pb-4'>
                           <img src={ress.images.jpg.image_url} alt="" className='w-14 rounded-sm' />
@@ -101,7 +105,7 @@ const SerchAnime = () => {
                        ))}
                   </div>
               </div>
-       
+           
        </div> 
             
         </>

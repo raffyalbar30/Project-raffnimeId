@@ -1,18 +1,22 @@
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+
 const Recomend = () => {
    const [recomnd, setrecomnd] = useState([]);
    useEffect(()=> {
-      const getAllrecomend =  async () => {
-          try {
-             const data = await axios.get(`https://api.jikan.moe/v4/top/anime?limit=5`)
-               setrecomnd(data.data.data);
-          } catch (error) {
-          }
- 
-      }
-      getAllrecomend()
+      setTimeout(()=> {
+         const getAllrecomend =  async () => {
+             try {
+                const Response = await axios.get(`https://api.jikan.moe/v4/top/anime?limit=5`);
+                  setrecomnd(Response.data.data);
+             } catch (error) {
+             }
+    
+         }
+         getAllrecomend()
+
+      }, 1000)
 
    }, []);
 
