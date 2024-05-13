@@ -5,9 +5,7 @@ import Index from '../Components/Menu/Index';
 const Homepage = () => {
     return (
         <>
-        <div>
               <Index></Index>
-        </div>
         </>
     );
 }

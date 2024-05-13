@@ -1,8 +1,8 @@
 import { IoCloseOutline, IoEyeSharp } from "react-icons/io5";
-import axios from 'axios';
 import React, { useEffect, useRef, useState} from 'react';
 import { MdStarHalf } from "react-icons/md";
 import { PiFilmSlateBold } from "react-icons/pi";
+import { Raffnimeapi } from "../../libs/Api";
 
 
 
@@ -34,8 +34,7 @@ const SerchAnime = () => {
     const Fecthapi = async () => {
         try {
                 setisLoading(true);
-                const Url = `https://api.jikan.moe/v4/anime?q=${getInput}`;
-                const response = await axios.get(Url);
+                const response = await Raffnimeapi(`anime?q=${getInput}`);
                 setFilter(response.data.data);
             } catch (error) {
                console.log(error);   
@@ -45,8 +44,7 @@ const SerchAnime = () => {
         }
 
     const handleclick = (event) => {
-        const valideteinput = getInput.trim();
-        if (valideteinput == 0 ) return
+        if (!getInput) return
             event.preventDefault() 
             setclick(true);
             Fecthapi();

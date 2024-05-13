@@ -1,38 +1,32 @@
-
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { Raffnimeapi } from '../../libs/Api';
+import { useEffect, useState } from 'react';
 
 const Recomend = () => {
-   const [recomnd, setrecomnd] = useState([]);
-   useEffect(()=> {
-      setTimeout(()=> {
-         const getAllrecomend =  async () => {
+   const [recomended, setrecomended] = useState([]);
+         const getAllrecomend = async () => {
              try {
-                const Response = await axios.get(`https://api.jikan.moe/v4/top/anime?limit=5`);
-                  setrecomnd(Response.data.data);
+                const Response = await Raffnimeapi(`top/anime?limit=5`);
+                setrecomended(Response.data.data);
              } catch (error) {
+               console.log(error)
              }
-    
          }
-         getAllrecomend()
+         useEffect(()=> {
+            getAllrecomend();
+         }, []);
 
-      }, 1000)
-
-   }, []);
-
-  
+         
  
     return (
        <>
           <div className='flex gap-x-8 justify-center mt-8 mr-8 ml-8'>
                   <>
-                    {recomnd.map((all)=> (
-                      <div key={all.mal_id}>
-                      <img src={all.images.jpg.image_url} alt="" className='rounded-md h-[332px] w-[230px]' />
-                      <p className='text-sm mt-2 text-slate-400 font-medium text-left'>{all.title}</p>
+                    {recomended.map(dataress => (
+                      <div key={dataress.mal_id}>
+                      <img src={dataress.images.jpg.image_url} alt="" className='rounded-md h-[332px] w-[230px]' />
+                      <p className='text-sm mt-2 text-slate-400 font-medium text-left'>{dataress.title}</p>
                        </div>
-                        ))}
-                     
+                       ))}
                     </>
           </div>
        </>

@@ -18,13 +18,13 @@ const Menu = () => {
              </div>
              <Recomend></Recomend>
          </div>
-         <div className='md:mt-16 mt-4 items-center'>
+          <div className='md:mt-16 mt-4 items-center'>
              <div className='flex justify-between items-center'>
              <p className='md:text-lg font-medium text-slate-400 md:ml-8'>ALL TIME POPULER </p>
              <p className='md:text-sm font-medium text-slate-400 md:mr-8'>VIEW ALL</p>
              </div>
              <Alltop></Alltop>
-         </div> 
+         </div>  
          {/* <div className='md:mt-16 mt-4 items-center'>
              <div className='flex justify-between items-center'>
              <p className='md:text-lg font-medium text-slate-400 md:ml-8'>SEASON UP COMMING </p>
