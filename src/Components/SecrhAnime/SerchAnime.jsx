@@ -14,11 +14,12 @@ const SerchAnime = () => {
     const [isLoading,setisLoading] = useState(false);
     const component = useRef();
 
-
+   // GET USER INPUT
     const Handlechange = (e) => {
      setgetInput(e.target.value)
     }
 
+    // CLICK OUTSIDE COMPONENT POP-UP
     useEffect(() => {
         const Outside = (e) =>{
            if (!component.current.contains(e.target)) {
@@ -30,7 +31,7 @@ const SerchAnime = () => {
         return ()=> document.removeEventListener("mousedown", Outside);
      });
   
-
+   //   FECTHING API GET REQUEST INPUT USER DATA'S 
     const Fecthapi = async () => {
         try {
                 setisLoading(true);
@@ -43,12 +44,15 @@ const SerchAnime = () => {
             }
         }
 
+    // IF CLICK BUTTON SERCH TO REQUEST DATA
     const handleclick = (event) => {
         if (!getInput) return
             event.preventDefault() 
             setclick(true);
             Fecthapi();
     }
+
+    // CLICK CLOSE COMPONENT
      const handleclose = () => {
          setclick(false);
     }

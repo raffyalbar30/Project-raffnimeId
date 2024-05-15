@@ -1,6 +1,8 @@
 import React from 'react';
 import Recomend from '../Allmenu/Recomend';
 import Alltop from '../Allmenu/Alltop';
+import {Link } from "react-router-dom";
+
 // import Seasonupcoming from '../Allmenu/Seasonupcoming';
 // import Topanime from '../Allmenu/Topanime';
 import Footer from '../Footer/footer';
@@ -14,14 +16,14 @@ const Menu = () => {
         <div className='md:mt-12 mt-4 items-center'>
              <div className='flex justify-between items-center'>
              <p className='md:text-lg font-medium text-slate-400 md:ml-8'>RECOMENDATION ANIMELIST </p>
-             <p className='md:text-sm font-medium text-slate-400 md:mr-8'>VIEW ALL</p>
+             <p className='md:text-sm font-medium text-slate-400 md:mr-8 cursor-pointer'><Link to={"/animeviews"}>VIEW ALL</Link></p>
              </div>
              <Recomend></Recomend>
          </div>
           <div className='md:mt-16 mt-4 items-center'>
              <div className='flex justify-between items-center'>
              <p className='md:text-lg font-medium text-slate-400 md:ml-8'>ALL TIME POPULER </p>
-             <p className='md:text-sm font-medium text-slate-400 md:mr-8'>VIEW ALL</p>
+             <p className='md:text-sm font-medium text-slate-400 md:mr-8 cursor-pointer'><Link to={"/mangakaviews"}>VIEW ALL</Link></p>
              </div>
              <Alltop></Alltop>
          </div>  

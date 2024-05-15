@@ -29,12 +29,12 @@ const Viewnime = () => {
               <video className="w-full -z-10" loop>
               <source src="Img/landing-video.mp4" type="video/mp4"  className='h-12'/>
               </video>
-              {/* MAPING LOAD DATAS ALL ANIME */}
+              {/* MAPING LOAD DATA'S ALL ANIME */}
               <div className='mt-12'>
-              <p className='md:text-lg font-medium text-slate-400 md:ml-8'>TOP ANIMELIST</p>
+              <p className='md:text-lg font-medium text-slate-400 md:ml-8'>TOP ANIMELIST #{page}</p>
                 <div className='grid md:grid-cols-6 sm:grid-cols-3 grid-cols-2 justify-center mt-8 ml-4 mr-4 gap-4'>
                   <>
-                    {Topanime?.map(dataress => (
+                    {Topanime.map(dataress => (
                       <div key={dataress.mal_id}>
                       <img src={dataress.images.jpg.image_url} alt="" className='rounded-md h-[332px] w-[230px]' />
                       <p className='text-sm mt-2 text-slate-400 font-medium text-left'>{dataress.title}</p>
@@ -43,10 +43,10 @@ const Viewnime = () => {
                     </>
                  </div>
               </div>
-              {/* PAGINATION */}
-              <Pagination page={page} setTopanime={setTopanime}></Pagination>
-              {/* FOOTER */}
-              <Footer></Footer>
+                    {/* PAGINATION COMPONENT */}
+                    <Pagination page={page} setpage={setpage}></Pagination>
+                    {/* FOOTER */}
+                 <Footer></Footer>
         </div>
         </div>
         <div className='-z-20'>
