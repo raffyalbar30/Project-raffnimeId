@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom';
 import Viewspage from './Page/Viewsanimepage.jsx'
 import Viewsmangaka from './Page/Viewsmangaka.jsx'
+import Detail from './Components/detail/[id]/Detail.jsx'
+
+
 
 
 
@@ -16,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
          <Route path ="/" element={<App />}></Route>
          <Route path ="/animeviews" element={<Viewspage />}></Route>
          <Route path ="/mangakaviews" element={<Viewsmangaka />}></Route>
+         <Route path ="/detail/:id" element={<Detail />}></Route>
         </Routes>
       </Router>
   </React.StrictMode>,

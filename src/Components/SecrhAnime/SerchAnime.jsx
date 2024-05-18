@@ -46,7 +46,7 @@ const SerchAnime = () => {
 
     // IF CLICK BUTTON SERCH TO REQUEST DATA
     const handleclick = (event) => {
-        if (!getInput) return
+        if (!getInput || getInput.trim() == "") return
             event.preventDefault() 
             setclick(true);
             Fecthapi();
