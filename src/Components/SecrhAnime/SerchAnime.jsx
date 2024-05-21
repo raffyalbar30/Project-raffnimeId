@@ -93,7 +93,7 @@ const SerchAnime = () => {
                           <div className='flex pt-4 pb-4'>
                           <img src={ress.images.jpg.image_url} alt="" className='w-14 rounded-sm' />
                           <div className="pl-2 pt-2">
-                          <Link to={`/detail/${ress.mal_id}`}>
+                          <Link to={`/detail/${ ress.mal_id}`}>
                            <p className='text-xs text-left mr-2 cursor-pointer'>{ress.title}</p>
                           </Link>
                            <div className="pt-2 flex">
